@@ -142,6 +142,8 @@ ownershipYear = 2022-2023学年
 
 此项目欢迎各位进行修正bug和二次开发，二次开发请fork本项目，在`dev`分支基础上上新建新分支进行二次开发，开发后可以发起push Request项目的`dev`分支，确认无误后会将代码进行合并。
 
+[项目地址](https://github.com/CheungChingYin/YouthStudy)
+
 
 
 
