@@ -33,7 +33,7 @@ public class Main {
         Properties properties = new Properties();
 
         String configPath = System.getProperty("configPath", "");
-        log.info("开始生成学时表Excel");
+        log.info("------开始生成学时表Excel------");
 
         try {
             if (StringUtil.isBlank(configPath)) {
@@ -124,20 +124,21 @@ public class Main {
         List<StudyHourTable> studyHourTableSortList = studyHourTableList.stream().sorted(Comparator.comparing(StudyHourTable::getStudentNumber)).collect(Collectors.toList());
         String exportPath = propertiesInfo.getExportExcelPath();
         if (StringUtil.isBlank(exportPath)) {
-            exportPath = new ClassPathResource("").getFile().getAbsolutePath();
+            exportPath = new File("").getAbsolutePath();
         }
         String fileName = DateUtil.format(new Date(), "YYYY.MM.dd") + "-" + studyHourTableConfig.getClassName()
                 + "-" + studyHourTableConfig.getActivityName() + ".xls";
-        InputStream srcInputStream = new ClassPathResource("广州商学院“4+X”活动学时认定登记表(2022版).xls").getStream();
-        log.info("获取模板Excel成功");
+        InputStream srcInputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("广州商学院“4+X”活动学时认定登记表(2022版).xls");
+        log.info("------获取模板Excel成功------");
         File tempFile = FileUtil.createTempFile();
         File srcFile = FileUtil.writeFromStream(srcInputStream, tempFile);
-        log.info("生成临时Excel成功");
-        String finalExportPath = exportPath +"/"+ fileName;
+        log.info("------生成临时Excel成功------");
+        String finalExportPath = exportPath +"\\"+ fileName;
         log.info("导出到：{}", finalExportPath);
         File distFile = new File(finalExportPath);
         FileUtil.copy(srcFile, distFile, true);
         EasyExcel.write(distFile, StudyHourTable.class).withTemplate(srcFile).sheet(0).doFill(studyHourTableSortList);
+        log.info("------学时表已生成于{}------", finalExportPath);
 
 
     }
