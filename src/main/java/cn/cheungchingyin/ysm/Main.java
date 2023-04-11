@@ -32,14 +32,17 @@ public class Main {
         InputStream propertiesInputStream;
         Properties properties = new Properties();
 
-        String configPath = System.getProperty("configPath", "");
+//        String configPath = System.getProperty("configPath", "");
         log.info("------开始生成学时表Excel------");
 
         try {
-            if (StringUtil.isBlank(configPath)) {
-                propertiesInputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("application.properties");
+            File config = new File("application.properties");
+            if (config.exists()) {
+                log.info("------使用自定义的application.properties,路径为{}------", config.getAbsolutePath());
+                propertiesInputStream = new BufferedInputStream(Files.newInputStream(config.toPath()));
             } else {
-                propertiesInputStream = new BufferedInputStream(Files.newInputStream(new File("application.properties").toPath()));
+                propertiesInputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("application.properties");
+                log.info("------使用系统默认的的application.properties,路径为{}------", config.getAbsolutePath());
             }
             properties.load(new BufferedReader(new InputStreamReader(propertiesInputStream, StandardCharsets.UTF_8)));
         } catch (Exception e) {
