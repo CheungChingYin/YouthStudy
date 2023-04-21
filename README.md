@@ -17,7 +17,7 @@
 
 ### 2.3 配置`application.properties` 文件
 在文件夹内，通过记事本打开`application.properties`文件
-![image](https://user-images.githubusercontent.com/20316736/231211868-462903cb-a873-484e-81f3-98c19e719f7b.png)
+![image](https://user-images.githubusercontent.com/20316736/233511437-00f1093e-56fb-4e0d-bd57-06c7fac261e1.png)
 
 `studentInfoExcelPath` 指学生信息Excel地址，路径分隔符使用 `\` 和 `/` 皆可，单使用 `\` 的时候必须要注意进行转义为 `\\`。
 
