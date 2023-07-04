@@ -129,8 +129,8 @@ public class Main {
                     // 如果当前班级学生名称没有重复的情况下，且根据学生名字匹配到信息
                     StudyHourTable tempStudentHourTable = new StudyHourTable();
                     BeanUtil.copyProperties(studyHourTableConfig, tempStudentHourTable);
-                    tempStudentHourTable.setStudentNumber(studentNumberMap.get(studentNumber).getStudentNumber());
-                    tempStudentHourTable.setName(studentNumberMap.get(studentNumber).getName());
+                    tempStudentHourTable.setStudentNumber(studentNameMap.get(studentNumber).getStudentNumber());
+                    tempStudentHourTable.setName(studentNameMap.get(studentNumber).getName());
                     studyHourTableList.add(tempStudentHourTable);
                 } else {
                     log.error("找不到相应的学学生信息,collectInfo = {}", collectInfo);
